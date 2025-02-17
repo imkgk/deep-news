@@ -1,9 +1,7 @@
 name: Generate Articles
 
 on:
-  push:
-    paths:
-      - "topics/*.md"
+  push: # Remove paths filter to run on every push
 
 jobs:
   process-topics:

@@ -39,7 +39,7 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
 
         # 调用自定义 API 端点
         response = client.chat.completions.create(
-            model=os.environ.get("MODEL_NAME", "gpt-4"),  # 可配置模型名称
+            model=os.environ.get("MODEL_NAME", "gpt-4o"),  # 可配置模型名称
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=2000
