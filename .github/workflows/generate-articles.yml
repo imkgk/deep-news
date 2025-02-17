@@ -12,14 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
-      - name: Find new files
-        id: find-files
-        run: |
-          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD^ HEAD -- topics/)
-          echo "new_files=${NEW_FILES}" >> $GITHUB_OUTPUT
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -33,10 +25,10 @@ jobs:
       - name: Run generator
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }} # 自定义 API 地址
-          MODEL_NAME: "your-custom-model" # 可选模型名称
+          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
+          MODEL_NAME: "your-custom-model"
         run: |
-          python scripts/generate_articles.py "${{ steps.find-files.outputs.new_files }}"
+          python scripts/generate_articles.py "topics/*.md"
 
       - name: Commit results
         run: |
