@@ -7,7 +7,7 @@ from glob import glob
 def generate_articles(files_pattern: str):
     # 初始化自定义 OpenAI 客户端
     client = openai.OpenAI(
-        base_url="https://api.302.ai",  # 自定义 API 地址
+        base_url="https://api.302.ai/v1",  # 自定义 API 地址
         api_key=os.environ["OPENAI_API_KEY"]         # 从环境变量获取密钥
     )
 
@@ -39,7 +39,7 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
 
         # 调用自定义 API 端点
         response = client.chat.completions.create(
-            model=os.environ.get("MODEL_NAME", "gpt-4o"),  # 可配置模型名称
+            model="gpt-4o",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=2000
