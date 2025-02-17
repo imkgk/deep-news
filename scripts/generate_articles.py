@@ -2,16 +2,23 @@ import os
 import openai
 from pathlib import Path
 from frontmatter import load
+from glob import glob
 
-def generate_articles(files_str: str):
+def generate_articles(files_pattern: str):
     # 初始化自定义 OpenAI 客户端
     client = openai.OpenAI(
         base_url="https://api.302.ai",  # 自定义 API 地址
         api_key=os.environ["OPENAI_API_KEY"]         # 从环境变量获取密钥
     )
 
-    # 解析文件列表
-    for file_path in files_str.split():
+    # 使用 glob 展开文件模式
+    files = glob(files_pattern)
+    if not files:
+        print(f"警告：没有找到匹配的文件：{files_pattern}")
+        return
+
+    # 处理所有匹配的文件
+    for file_path in files:
         process_single_file(Path(file_path), client)
 
 def process_single_file(topic_path: Path, client: openai.OpenAI):

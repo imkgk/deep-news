@@ -28,7 +28,7 @@ jobs:
           OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
           MODEL_NAME: "your-custom-model"
         run: |
-          python scripts/generate_articles.py "topics/*.md"
+          python scripts/generate_articles.py topics/*.md
 
       - name: Commit results
         run: |
