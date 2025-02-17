@@ -6,7 +6,7 @@ from frontmatter import load
 def generate_articles(files_str: str):
     # 初始化自定义 OpenAI 客户端
     client = openai.OpenAI(
-        base_url=os.environ.get("OPENAI_API_BASE"),  # 自定义 API 地址
+        base_url="https://api.302.ai",  # 自定义 API 地址
         api_key=os.environ["OPENAI_API_KEY"]         # 从环境变量获取密钥
     )
 
