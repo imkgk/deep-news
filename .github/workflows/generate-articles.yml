@@ -1,7 +1,10 @@
 name: Generate Articles
 
 on:
-  push: # Remove paths filter to run on every push
+  push:
+
+permissions:
+  contents: write # Add permissions to write to repository
 
 jobs:
   process-topics:
@@ -10,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # Use GITHUB_TOKEN for authentication
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,8 +35,8 @@ jobs:
 
       - name: Commit results
         run: |
-          git config --global user.name "Article Bot"
-          git config --global user.email "bot@example.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add articles/
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generate articles"
           git push
