@@ -1,0 +1,47 @@
+name: Generate Articles
+
+on:
+  push:
+    paths:
+      - "topics/*.md"
+
+jobs:
+  process-topics:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find new files
+        id: find-files
+        run: |
+          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD^ HEAD -- topics/)
+          echo "new_files=${NEW_FILES}" >> $GITHUB_OUTPUT
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install openai python-frontmatter
+
+      - name: Run generator
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }} # 自定义 API 地址
+          MODEL_NAME: "your-custom-model" # 可选模型名称
+        run: |
+          python scripts/generate_articles.py "${{ steps.find-files.outputs.new_files }}"
+
+      - name: Commit results
+        run: |
+          git config --global user.name "Article Bot"
+          git config --global user.email "bot@example.com"
+          git add articles/
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generate articles"
+          git push
