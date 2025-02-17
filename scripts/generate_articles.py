@@ -7,15 +7,26 @@ from glob import glob
 def generate_articles(files_pattern: str):
     # 初始化自定义 OpenAI 客户端
     client = openai.OpenAI(
-        base_url="https://api.302.ai/v1",  # 自定义 API 地址
-        api_key=os.environ["OPENAI_API_KEY"]         # 从环境变量获取密钥
+        base_url="https://api.302.ai/v1",
+        api_key=os.environ["OPENAI_API_KEY"]
     )
 
-    # 使用 glob 展开文件模式
+    # 直接使用 glob 处理模式
     files = glob(files_pattern)
+
     if not files:
         print(f"警告：没有找到匹配的文件：{files_pattern}")
+        # 列出 topics 目录内容以便调试
+        topics_dir = Path("topics")
+        if topics_dir.exists():
+            print("topics 目录中的文件：")
+            for f in topics_dir.glob("*.md"):
+                print(f"  - {f.name}")
         return
+
+    print(f"找到以下文件：")
+    for f in files:
+        print(f"  - {f}")
 
     # 处理所有匹配的文件
     for file_path in files:
@@ -62,7 +73,8 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
-        print("请提供要处理的文件列表")
+        print("请提供要处理的文件模式")
         sys.exit(1)
         
-    generate_articles(' '.join(sys.argv[1:]))
+    # 直接使用命令行参数中的文件模式
+    generate_articles(sys.argv[1])
