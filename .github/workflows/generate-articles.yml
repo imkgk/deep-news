@@ -3,6 +3,8 @@ name: Generate Articles
 on:
   pull_request:
     types: [opened, synchronize]
+    paths:
+      - "topics/**/*.md" # Only trigger on markdown files in topics directory
 
 permissions:
   contents: write # Add permissions to write to repository
@@ -27,17 +29,26 @@ jobs:
         run: |
           pip install openai python-frontmatter
 
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v42
+        with:
+          files: topics/**/*.md
+
       - name: Run generator
+        if: steps.changed-files.outputs.any_changed == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
           MODEL_NAME: "your-custom-model"
         run: |
-          python scripts/generate_articles.py "topics/*.md"
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            python scripts/generate_articles.py "$file"
+          done
 
       - name: Commit results
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add _posts/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-generate posts" && git push)
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generate posts" && git push
