@@ -1,7 +1,8 @@
 name: Generate Articles
 
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize]
 
 permissions:
   contents: write # Add permissions to write to repository
