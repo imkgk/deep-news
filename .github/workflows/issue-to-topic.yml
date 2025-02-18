@@ -50,5 +50,5 @@ jobs:
           branch: ${{ env.BRANCH_NAME }}
           base: main
           labels: automatic
-          add-paths: |
-            topics/
+          delete-branch: true
+          push-to-fork: ""
