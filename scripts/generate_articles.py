@@ -45,11 +45,19 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
             max_tokens=2000
         )
 
-        output_dir = Path("articles")
+        output_dir = Path("_posts")
         output_dir.mkdir(exist_ok=True)
         
         output_path = output_dir / f"{topic_path.stem}-generated.md"
         with open(output_path, "w") as f:
+            summary = f"""
+            ---
+            title: "Least squares and least absolute deviations"
+            date: 2021-02-10
+            description: A comparison between two methods of linear regression
+            ---
+            """
+            f.write(summary)
             f.write(response.choices[0].message.content)
             
         print(f"成功生成：{output_path}")

@@ -1,0 +1,16 @@
+title: "Deep News"
+author: "dn"
+permalink: /:title/
+lang: "zh-CN"
+excerpt_separator: "\n\n\n"
+mathjax: false
+show_excerpts: false
+show_frame: true
+
+navigation:
+  - { title: Feed, icon: rss, url: "/feed.xml" }
+
+remote_theme: niklasbuschmann/contrast
+
+plugins:
+  - jekyll-feed
