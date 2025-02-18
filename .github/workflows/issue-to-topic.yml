@@ -37,18 +37,11 @@ jobs:
           ${{ github.event.issue.body }}
           EOL
 
-      - name: Commit and push
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add topics/
-          git commit -m "feat: convert issue #${{ github.event.issue.number }} to topic"
-          git push origin $BRANCH_NAME
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat: convert issue #${{ github.event.issue.number }} to topic"
           title: "🤖 Convert issue #${{ github.event.issue.number }} to topic"
           body: |
             This PR was automatically created from issue #${{ github.event.issue.number }}.
@@ -57,3 +50,5 @@ jobs:
           branch: ${{ env.BRANCH_NAME }}
           base: main
           labels: automatic
+          add-paths: |
+            topics/
