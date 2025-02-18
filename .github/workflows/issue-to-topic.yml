@@ -19,11 +19,10 @@ jobs:
       - name: Create branch
         run: |
           issue_date=$(date +%Y-%m-%d)
-          issue_title=$(echo "${{ github.event.issue.title }}" | sed 's/[^a-zA-Z0-9]/-/g' | tr '[:upper:]' '[:lower:]')
-          branch_name="topic/${issue_date}-${issue_title}"
+          branch_name="topic/issue-${{ github.event.issue.number }}"
           git checkout -b $branch_name
           echo "BRANCH_NAME=$branch_name" >> $GITHUB_ENV
-          echo "FILE_NAME=${issue_date}-${issue_title}.md" >> $GITHUB_ENV
+          echo "FILE_NAME=${issue_date}-issue-${{ github.event.issue.number }}.md" >> $GITHUB_ENV
 
       - name: Create topic file
         run: |
