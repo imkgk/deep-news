@@ -58,12 +58,12 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
         output_path = output_dir / f"{topic_path.stem}-generated.md"
         with open(output_path, "w") as f:
             frontmatter = f"""---
-            title: "{title}"
-            date: {datetime.now().strftime('%Y-%m-%d')}
-            description: Generated from {topic_path.name}
-            ---
+title: "{title}"
+date: {datetime.now().strftime('%Y-%m-%d')}
+description: Generated from {topic_path.name}
+---
 
-            """
+"""
             f.write(frontmatter)
             f.write(content)
             
