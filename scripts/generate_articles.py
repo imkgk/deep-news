@@ -39,6 +39,7 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
         - 使用中文二级、三级标题
         - 包含技术细节和示例
         - 输出格式规范
+        - 只输出 markdown 的内容，不要开头和结尾的 markdown 格式标签
         """
 
         response = client.chat.completions.create(
