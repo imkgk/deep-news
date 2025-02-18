@@ -38,7 +38,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}  # 使用自定义的 PAT token
           commit-message: "feat: convert issue #${{ github.event.issue.number }} to topic"
           title: "🤖 Convert issue #${{ github.event.issue.number }} to topic"
           body: |
