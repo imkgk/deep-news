@@ -32,7 +32,6 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
     try:
         post = load(topic_path)
         prompt = f"""根据以下需求撰写专业 Markdown 格式文章：
-        # {topic_path.stem}
         {post.content}
 
         要求：
@@ -50,7 +49,8 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
         )
         
         content = response.choices[0].message.content
-        title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
+        # 只移除标题中的 # 号
+        title_match = re.search(r'^#+\s*(.+)$', content, re.MULTILINE)
         title = title_match.group(1) if title_match else topic_path.stem
         
         output_dir = Path("_posts")
