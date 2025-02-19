@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install openai python-frontmatter
+          pip install requests python-frontmatter
 
       - name: Get changed files
         id: changed-files
