@@ -49,7 +49,8 @@ def process_single_file(topic_path: Path, api_base: str, api_key: str):
             "model": "gpt-4o",
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
-            "max_tokens": 2000
+            "max_tokens": 2000,
+            "web-search": True,
         }
 
         # 发送请求
