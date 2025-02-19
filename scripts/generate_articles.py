@@ -10,7 +10,7 @@ from glob import glob
 def generate_articles(files_pattern: str):
     # 获取环境变量
     api_key = os.environ["OPENAI_API_KEY"]
-    api_base = os.environ.get("OPENAI_API_BASE", "https://api.302.ai/v1")
+    api_base = "https://api.302.ai/v1"
     
     # 处理文件
     files = glob(files_pattern)
