@@ -42,7 +42,7 @@ def process_single_file(topic_path: Path, client: openai.OpenAI):
         """
 
         response = client.chat.completions.create(
-            model="deepseek-r1-huoshan",
+            model="gpt-4o",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=2000
