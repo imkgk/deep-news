@@ -39,8 +39,8 @@ jobs:
         if: steps.changed-files.outputs.any_changed == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
-          MODEL_NAME: "your-custom-model"
+          OPENAI_API_BASE: ${{ variables.OPENAI_API_URL }}
+          OPENAI_API_MODEL: ${{ variables.OPENAI_API_MODEL }}
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             python scripts/generate_articles.py "$file"
