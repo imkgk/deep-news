@@ -3,8 +3,6 @@ name: Generate Articles
 on:
   pull_request:
     types: [opened, synchronize]
-    paths:
-      - "topics/**/*.md" # Only trigger on markdown files in topics directory
 
 permissions:
   contents: write # Add permissions to write to repository
