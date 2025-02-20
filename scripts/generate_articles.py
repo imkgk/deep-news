@@ -46,7 +46,7 @@ def process_single_file(topic_path: Path, api_base: str, api_key: str):
         }
         
         data = {
-            "model": "gpt-4o",
+            "model": "claude-3-5-sonnet-20241022",
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
             "max_tokens": 2000,
