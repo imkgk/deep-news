@@ -24,9 +24,9 @@ def generate_articles(files_pattern: str):
 
     # 处理所有匹配的文件
     for file_path in files:
-        process_single_file(Path(file_path), api_base, api_key)
+        process_single_file(Path(file_path), api_url, api_key)
 
-def process_single_file(topic_path: Path, api_base: str, api_key: str):
+def process_single_file(topic_path: Path, api_url: str, api_key: str):
     try:
         post = load(topic_path)
         prompt = f"""根据以下需求撰写专业 Markdown 格式文章：

@@ -37,7 +37,7 @@ jobs:
         if: steps.changed-files.outputs.any_changed == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_API_BASE: ${{ vars.OPENAI_API_URL }}
+          OPENAI_API_URL: ${{ vars.OPENAI_API_URL }} # Changed from OPENAI_API_BASE
           OPENAI_API_MODEL: ${{ vars.OPENAI_API_MODEL }}
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
