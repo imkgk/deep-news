@@ -10,7 +10,7 @@ from glob import glob
 def generate_articles(files_pattern: str):
     # 获取环境变量
     api_key = os.environ["OPENAI_API_KEY"]
-    api_base = "https://api.302.ai/v1"
+    api_url = os.environ["OPENAI_API_URL"]
     
     # 处理文件
     files = glob(files_pattern)
@@ -46,7 +46,7 @@ def process_single_file(topic_path: Path, api_base: str, api_key: str):
         }
         
         data = {
-            "model": "claude-3-5-sonnet-20241022",
+            "model": os.environ["OPENAI_API_MODEL"],
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
             "max_tokens": 2000,
@@ -55,7 +55,7 @@ def process_single_file(topic_path: Path, api_base: str, api_key: str):
 
         # 发送请求
         response = requests.post(
-            f"{api_base}/chat/completions",
+            api_url,
             headers=headers,
             json=data
         )
