@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>片语 - 首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+      .grain-texture {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.15;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950">
+    <div class="snap-container">
+      <!-- 卡片1：深色渐变配亮色卡片 - 短句 -->
+      <div
+        class="snap-item bg-gradient-to-br from-indigo-950 via-purple-950 to-slate-950 p-6 flex items-center justify-center relative"
+      >
+        <div class="absolute inset-0 grain-texture"></div>
+        <a
+          href="detail.html"
+          class="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] relative ring-1 ring-white/10"
+        >
+          <div
+            class="text-4xl font-extralight text-gray-800 leading-relaxed mb-8"
+          >
+            生命的意义不在于活了多久，而在于活得有多精彩。
+          </div>
+          <div class="flex items-center border-t border-gray-100 pt-6">
+            <div
+              class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center"
+            >
+              <i class="ri-user-3-line text-lg text-rose-500"></i>
+            </div>
+            <div class="ml-3 flex-1">
+              <div class="text-sm font-medium text-gray-800">杰克·伦敦</div>
+              <div class="text-xs text-gray-400">2024年3月18日</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 卡片2：浅色渐变配深色卡片 - 长句 -->
+      <div
+        class="snap-item bg-gradient-to-tr from-sky-400 via-blue-500 to-indigo-600 p-6 flex items-center justify-center"
+      >
+        <a
+          href="detail.html"
+          class="bg-slate-900/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] ring-1 ring-white/10"
+        >
+          <div class="text-2xl font-normal text-white leading-relaxed mb-8">
+            人生就像一场旅行，不必在乎目的地，在乎的是沿途的风景以及看风景的心情。不必在乎终点在哪里，在乎的是否充实而快乐地走完这一程。
+          </div>
+          <div class="flex items-center border-t border-slate-800 pt-6">
+            <div
+              class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center"
+            >
+              <i class="ri-user-3-line text-lg text-sky-400"></i>
+            </div>
+            <div class="ml-3 flex-1">
+              <div class="text-sm font-medium text-white">林清玄</div>
+              <div class="text-xs text-slate-400">2024年3月17日</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 卡片3：深色渐变配亮色卡片 - 中等长度 -->
+      <div
+        class="snap-item bg-gradient-to-bl from-emerald-950 via-teal-950 to-slate-950 p-6 flex items-center justify-center relative"
+      >
+        <div
+          class="absolute inset-0 bg-[linear-gradient(40deg,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]"
+        ></div>
+        <a
+          href="detail.html"
+          class="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] ring-1 ring-white/10"
+        >
+          <div class="text-5xl font-thin text-gray-800 leading-tight mb-8">
+            保持热爱，奔赴山海。
+          </div>
+          <div class="flex items-center border-t border-gray-100 pt-6">
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center"
+            >
+              <i class="ri-user-3-line text-lg text-emerald-600"></i>
+            </div>
+            <div class="ml-3 flex-1">
+              <div class="text-sm font-medium text-gray-800">佚名</div>
+              <div class="text-xs text-gray-400">2024年3月16日</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 卡片4：鲜艳渐变配深色卡片 - 中等长度 -->
+      <div
+        class="snap-item bg-gradient-to-r from-fuchsia-500 via-purple-600 to-indigo-500 p-6 flex items-center justify-center relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),transparent_70%)]"
+        ></div>
+        <a
+          href="detail.html"
+          class="bg-slate-900/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] ring-1 ring-white/10"
+        >
+          <div class="text-3xl font-medium text-white leading-relaxed mb-8">
+            我们都是追梦人，不应该给梦想设限。当你全心全意投入一件事，整个世界都会为你让路。
+          </div>
+          <div class="flex items-center border-t border-slate-800 pt-6">
+            <div
+              class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center"
+            >
+              <i class="ri-user-3-line text-lg text-fuchsia-400"></i>
+            </div>
+            <div class="ml-3 flex-1">
+              <div class="text-sm font-medium text-white">歌德</div>
+              <div class="text-xs text-slate-400">2024年3月15日</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 卡片5：暖色渐变配深色卡片 - 短句 -->
+      <div
+        class="snap-item bg-gradient-to-bl from-amber-400 via-orange-500 to-red-600 p-6 flex items-center justify-center"
+      >
+        <a
+          href="detail.html"
+          class="bg-slate-900/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] ring-1 ring-white/10"
+        >
+          <div class="text-6xl font-bold text-white leading-tight mb-8">
+            此时此刻，是最好的时光。
+          </div>
+          <div class="flex items-center border-t border-slate-800 pt-6">
+            <div
+              class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center"
+            >
+              <i class="ri-user-3-line text-lg text-amber-400"></i>
+            </div>
+            <div class="ml-3 flex-1">
+              <div class="text-sm font-medium text-white">茶语</div>
+              <div class="text-xs text-slate-400">2024年3月14日</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 卡片6：深邃渐变配亮色卡片 - 长句 -->
+      <div
+        class="snap-item bg-gradient-to-tr from-slate-950 via-blue-950 to-indigo-950 p-6 flex items-center justify-center relative"
+      >
+        <div
+          class="absolute inset-0 bg-[linear-gradient(40deg,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]"
+        ></div>
+        <a
+          href="detail.html"
+          class="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] ring-1 ring-white/10"
+        >
+          <div class="text-xl font-normal text-gray-800 leading-relaxed mb-8">
+            生活中真正重要的不是你遭遇了什么，而是你记住了什么，又是如何铭记的。人生的价值不在于你拥有什么，而在于你追求什么，又是如何追求的。
+          </div>
+          <div class="flex items-center border-t border-gray-100 pt-6">
+            <div
+              class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center"
+            >
+              <i class="ri-user-3-line text-lg text-slate-600"></i>
+            </div>
+            <div class="ml-3 flex-1">
+              <div class="text-sm font-medium text-gray-800">
+                加西亚·马尔克斯
+              </div>
+              <div class="text-xs text-gray-400">2024年3月13日</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="floating-nav">
+      <a href="index.html" class="nav-item nav-active">
+        <i class="ri-home-5-line"></i>
+      </a>
+      <a href="create.html" class="nav-item nav-inactive">
+        <i class="ri-add-circle-line"></i>
+      </a>
+      <a href="profile.html" class="nav-item nav-inactive">
+        <i class="ri-user-line"></i>
+      </a>
+    </div>
+  </body>
+</html>

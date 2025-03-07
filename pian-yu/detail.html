@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>片语 - 详情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+      .grain-texture {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.15;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950">
+    <div class="relative h-screen">
+      <!-- 返回按钮 -->
+      <a
+        href="javascript:history.back()"
+        class="absolute top-4 left-4 z-10 text-white"
+      >
+        <i class="ri-arrow-left-line text-2xl"></i>
+      </a>
+
+      <!-- 卡片内容 -->
+      <div
+        class="h-full flex items-center justify-center bg-gradient-to-br from-indigo-950 via-purple-950 to-slate-950 p-6 relative"
+      >
+        <div class="absolute inset-0 grain-texture"></div>
+        <div
+          class="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] ring-1 ring-white/10 relative"
+        >
+          <div class="text-3xl font-light text-gray-800 leading-relaxed">
+            生活不是等待暴风雨过去，而是学会在雨中翩翩起舞。
+          </div>
+          <div class="mt-6 text-gray-600">— 泰戈尔</div>
+        </div>
+      </div>
+
+      <!-- 底部操作栏 -->
+      <div class="floating-nav">
+        <div class="nav-item nav-inactive">
+          <i class="ri-heart-line"></i>
+        </div>
+        <div class="nav-item nav-inactive">
+          <i class="ri-share-line"></i>
+        </div>
+        <div class="nav-item nav-inactive">
+          <i class="ri-file-copy-line"></i>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

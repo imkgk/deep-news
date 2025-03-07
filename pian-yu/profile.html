@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>片语 - 我的</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-slate-950">
+    <!-- 用户信息 -->
+    <div
+      class="bg-slate-900/50 backdrop-blur p-6 flex items-center border-b border-slate-800"
+    >
+      <div
+        class="w-16 h-16 rounded-full bg-slate-800 ring-1 ring-white/10 flex items-center justify-center"
+      >
+        <i class="ri-user-3-line text-2xl text-slate-400"></i>
+      </div>
+      <div class="ml-4">
+        <div class="text-lg font-medium text-white">用户名</div>
+        <div class="text-sm text-slate-400">已创建 12 条片语</div>
+      </div>
+    </div>
+
+    <!-- 我的作品列表 -->
+    <div class="grid grid-cols-2">
+      <!-- 卡片1 -->
+      <a href="detail.html" class="block">
+        <div
+          class="bg-gradient-to-br from-indigo-950 via-purple-950 to-slate-950 p-6"
+        >
+          <div
+            class="bg-white/95 backdrop-blur rounded-xl p-4 shadow-xl ring-1 ring-white/10"
+          >
+            <div
+              class="text-lg font-light text-gray-800 leading-relaxed line-clamp-4"
+            >
+              生活不是等待暴风雨过去，而是学会在雨中翩翩起舞。
+            </div>
+            <div class="mt-3 text-sm text-gray-600">— 泰戈尔</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 卡片2 -->
+      <a href="detail.html" class="block">
+        <div
+          class="bg-gradient-to-tr from-sky-400 via-blue-500 to-indigo-600 p-6"
+        >
+          <div
+            class="bg-slate-900/95 backdrop-blur rounded-xl p-4 shadow-xl ring-1 ring-white/10"
+          >
+            <div
+              class="text-lg font-light text-white leading-relaxed line-clamp-4"
+            >
+              "The best way to predict the future is to create it."
+            </div>
+            <div class="mt-3 text-sm text-slate-400">— Peter Drucker</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 卡片3 -->
+      <a href="detail.html" class="block">
+        <div
+          class="bg-gradient-to-bl from-amber-400 via-orange-500 to-red-600 p-6"
+        >
+          <div
+            class="bg-slate-900/95 backdrop-blur rounded-xl p-4 shadow-xl ring-1 ring-white/10"
+          >
+            <div
+              class="text-lg font-light text-white leading-relaxed line-clamp-4"
+            >
+              每一个不曾起舞的日子，都是对生命的辜负。
+            </div>
+            <div class="mt-3 text-sm text-slate-400">— 尼采</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 卡片4 -->
+      <a href="detail.html" class="block">
+        <div
+          class="bg-gradient-to-r from-fuchsia-500 via-purple-600 to-indigo-500 p-6"
+        >
+          <div
+            class="bg-slate-900/95 backdrop-blur rounded-xl p-4 shadow-xl ring-1 ring-white/10"
+          >
+            <div
+              class="text-lg font-light text-white leading-relaxed line-clamp-4"
+            >
+              The journey of a thousand miles begins with a single step.
+            </div>
+            <div class="mt-3 text-sm text-slate-400">— Lao Tzu</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="floating-nav">
+      <a href="index.html" class="nav-item nav-inactive">
+        <i class="ri-home-5-line"></i>
+      </a>
+      <a href="create.html" class="nav-item nav-inactive">
+        <i class="ri-add-circle-line"></i>
+      </a>
+      <a href="profile.html" class="nav-item nav-active">
+        <i class="ri-user-line"></i>
+      </a>
+    </div>
+  </body>
+</html>

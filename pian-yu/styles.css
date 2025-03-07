@@ -1,0 +1,50 @@
+.snap-container {
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.snap-item {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
+.floating-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 12px 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 32px;
+  z-index: 50;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  transition: all 0.2s;
+}
+
+.nav-item i {
+  font-size: 1.5rem;
+}
+
+.nav-active {
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.nav-inactive {
+  color: #94a3b8;
+}

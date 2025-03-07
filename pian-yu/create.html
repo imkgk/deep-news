@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>片语 - 创建</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+      .template-scroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .template-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .content-editable:empty:before {
+        content: attr(data-placeholder);
+        color: #9ca3af;
+      }
+      .content-editable:focus {
+        outline: none;
+      }
+      .grain-texture {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.15;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950">
+    <div class="h-screen flex flex-col">
+      <!-- 顶部导航 -->
+      <div
+        class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900/80 backdrop-blur"
+      >
+        <a href="javascript:history.back()" class="text-white">
+          <i class="ri-close-line text-2xl"></i>
+        </a>
+        <button class="text-blue-400 font-medium">发布</button>
+      </div>
+
+      <!-- 主要内容区 -->
+      <div class="flex-1 flex flex-col">
+        <!-- 预览区域 -->
+        <div
+          class="aspect-square bg-gradient-to-br from-indigo-950 via-purple-950 to-slate-950 p-6 flex items-center justify-center relative"
+        >
+          <div class="absolute inset-0 grain-texture"></div>
+          <div
+            class="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-xl w-[85%] relative ring-1 ring-white/10"
+          >
+            <!-- 可编辑的卡片内容 -->
+            <div
+              class="content-editable text-3xl font-light text-gray-800 leading-relaxed mb-8"
+              contenteditable="true"
+              data-placeholder="在这里输入你想说的话..."
+            ></div>
+            <!-- 作者信息 -->
+            <div class="flex items-center border-t border-gray-100 pt-6">
+              <div
+                class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center"
+              >
+                <i class="ri-user-3-line text-lg text-rose-500"></i>
+              </div>
+              <div class="ml-3 flex-1">
+                <div
+                  class="content-editable text-sm font-medium text-gray-800"
+                  contenteditable="true"
+                  data-placeholder="作者名称"
+                ></div>
+                <div class="text-xs text-gray-400">刚刚</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 模板选择区 -->
+        <div class="border-t border-slate-800 bg-slate-900/50">
+          <!-- 标签栏 -->
+          <div class="px-4 py-3 border-b border-slate-800">
+            <div class="text-sm font-medium text-white">选择模板</div>
+          </div>
+
+          <!-- 模板列表 -->
+          <div class="template-scroll overflow-x-auto py-4">
+            <div class="flex px-4 gap-4">
+              <!-- 模板1：深色渐变配亮色卡片 -->
+              <div
+                class="flex-shrink-0 w-40 bg-slate-800 rounded-xl border-2 border-blue-500 overflow-hidden"
+              >
+                <div
+                  class="aspect-[4/5] bg-gradient-to-br from-indigo-950 via-purple-950 to-slate-950 p-3 flex items-center justify-center relative"
+                >
+                  <div class="absolute inset-0 grain-texture"></div>
+                  <div
+                    class="bg-white/95 rounded-lg p-4 w-full ring-1 ring-white/10"
+                  >
+                    <div class="text-sm line-clamp-4 text-gray-800">
+                      点击编辑你的内容...
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 模板2：浅色渐变配深色卡片 -->
+              <div
+                class="flex-shrink-0 w-40 bg-slate-800 rounded-xl border border-slate-700 overflow-hidden"
+              >
+                <div
+                  class="aspect-[4/5] bg-gradient-to-tr from-sky-400 via-blue-500 to-indigo-600 p-3 flex items-center justify-center"
+                >
+                  <div
+                    class="bg-slate-900/95 rounded-lg p-4 w-full ring-1 ring-white/10"
+                  >
+                    <div class="text-sm line-clamp-4 text-white">
+                      点击编辑你的内容...
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 模板3：暖色渐变配深色卡片 -->
+              <div
+                class="flex-shrink-0 w-40 bg-slate-800 rounded-xl border border-slate-700 overflow-hidden"
+              >
+                <div
+                  class="aspect-[4/5] bg-gradient-to-bl from-amber-400 via-orange-500 to-red-600 p-3 flex items-center justify-center"
+                >
+                  <div
+                    class="bg-slate-900/95 rounded-lg p-4 w-full ring-1 ring-white/10"
+                  >
+                    <div class="text-sm line-clamp-4 text-white">
+                      点击编辑你的内容...
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 模板4：鲜艳渐变配深色卡片 -->
+              <div
+                class="flex-shrink-0 w-40 bg-slate-800 rounded-xl border border-slate-700 overflow-hidden"
+              >
+                <div
+                  class="aspect-[4/5] bg-gradient-to-r from-fuchsia-500 via-purple-600 to-indigo-500 p-3 flex items-center justify-center"
+                >
+                  <div
+                    class="bg-slate-900/95 rounded-lg p-4 w-full ring-1 ring-white/10"
+                  >
+                    <div class="text-sm line-clamp-4 text-white">
+                      点击编辑你的内容...
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
