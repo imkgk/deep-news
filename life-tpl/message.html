@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生活指南 - 消息</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+    />
+    <style>
+      .message-item {
+        background-color: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 0.75rem;
+        padding: 1rem;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .message-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .message-content {
+        flex: 1;
+      }
+
+      .message-time {
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+
+      .unread {
+        background-color: #f0f9ff;
+      }
+
+      .unread::after {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #3b82f6;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+
+      .tab-active {
+        color: #3b82f6;
+        border-bottom: 2px solid #3b82f6;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-6 pb-20">
+      <h1 class="text-2xl font-bold mb-6 text-center">消息</h1>
+
+      <!-- 标签页 -->
+      <div class="flex border-b mb-6">
+        <div class="px-4 py-2 tab-active">全部</div>
+        <div class="px-4 py-2 text-gray-500">点赞</div>
+        <div class="px-4 py-2 text-gray-500">评论</div>
+        <div class="px-4 py-2 text-gray-500">关注</div>
+      </div>
+
+      <!-- 消息列表 -->
+      <div class="mb-6">
+        <!-- 消息1 -->
+        <div class="message-item unread relative">
+          <div class="message-avatar">
+            <i class="ri-user-line text-gray-500 text-xl"></i>
+          </div>
+          <div class="message-content">
+            <div class="flex justify-between">
+              <span class="font-semibold">健康生活达人</span>
+              <span class="message-time">10分钟前</span>
+            </div>
+            <p class="text-gray-700 mt-1">点赞了你的生活指南「健康生活习惯」</p>
+          </div>
+        </div>
+
+        <!-- 消息2 -->
+        <div class="message-item relative">
+          <div class="message-avatar">
+            <i class="ri-user-line text-gray-500 text-xl"></i>
+          </div>
+          <div class="message-content">
+            <div class="flex justify-between">
+              <span class="font-semibold">运动健身教练</span>
+              <span class="message-time">1小时前</span>
+            </div>
+            <p class="text-gray-700 mt-1">
+              评论了你的生活指南「运动习惯」：非常实用的建议，我也推荐每天进行30分钟的有氧运动。
+            </p>
+          </div>
+        </div>
+
+        <!-- 消息3 -->
+        <div class="message-item relative">
+          <div class="message-avatar">
+            <i class="ri-user-line text-gray-500 text-xl"></i>
+          </div>
+          <div class="message-content">
+            <div class="flex justify-between">
+              <span class="font-semibold">营养师小王</span>
+              <span class="message-time">昨天</span>
+            </div>
+            <p class="text-gray-700 mt-1">关注了你</p>
+          </div>
+        </div>
+
+        <!-- 消息4 -->
+        <div class="message-item relative">
+          <div class="message-avatar">
+            <i class="ri-user-line text-gray-500 text-xl"></i>
+          </div>
+          <div class="message-content">
+            <div class="flex justify-between">
+              <span class="font-semibold">系统通知</span>
+              <span class="message-time">3天前</span>
+            </div>
+            <p class="text-gray-700 mt-1">
+              你的生活指南「睡眠习惯」已被推荐到首页
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div
+      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-2 z-50"
+    >
+      <a href="index.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-home-fill text-xl"></i>
+        <span class="text-xs mt-1">首页</span>
+      </a>
+      <a href="plan.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-calendar-check-fill text-xl"></i>
+        <span class="text-xs mt-1">计划</span>
+      </a>
+      <a href="create.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-add-circle-fill text-xl"></i>
+        <span class="text-xs mt-1">创建</span>
+      </a>
+      <a href="message.html" class="flex flex-col items-center text-blue-500">
+        <i class="ri-message-3-fill text-xl"></i>
+        <span class="text-xs mt-1">消息</span>
+      </a>
+      <a href="profile.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-user-fill text-xl"></i>
+        <span class="text-xs mt-1">我的</span>
+      </a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生活指南 - 详情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+    />
+    <style>
+      body {
+        background-color: #f8f8f8;
+      }
+
+      .detail-header {
+        position: relative;
+        height: 400px;
+        overflow: hidden;
+      }
+
+      .detail-header-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .detail-header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.6)
+        );
+        display: flex;
+        align-items: flex-end;
+        padding: 1.5rem;
+      }
+
+      .detail-category {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-category {
+        display: flex;
+        align-items: center;
+        background-color: #f8f8f8;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        margin-bottom: 1.5rem;
+        width: fit-content;
+      }
+
+      .content-category i {
+        margin-right: 0.5rem;
+        color: #ff2442;
+      }
+
+      .content-category span {
+        font-weight: 500;
+        color: #333;
+      }
+
+      .detail-content {
+        background-color: white;
+        border-radius: 1.5rem 1.5rem 0 0;
+        margin-top: 1rem;
+        position: relative;
+        z-index: 10;
+        padding: 1.5rem;
+      }
+
+      .detail-section {
+        margin-bottom: 2rem;
+      }
+
+      .detail-section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .detail-section-title i {
+        margin-right: 0.5rem;
+      }
+
+      .detail-text {
+        color: #333;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        font-size: 1.05rem;
+      }
+
+      .detail-list {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 1.25rem;
+      }
+
+      .detail-list li {
+        margin-bottom: 0.75rem;
+        color: #333;
+        position: relative;
+        padding-left: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .detail-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #ff2442;
+        font-size: 1.2rem;
+      }
+
+      .detail-recommendations {
+        background-color: #f9f9f9;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .detail-recommendations-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .detail-recommendations-title i {
+        margin-right: 0.5rem;
+        color: #ff2442;
+      }
+
+      .recommendation-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .recommendation-item:last-child {
+        border-bottom: none;
+      }
+
+      .recommendation-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 0.5rem;
+        object-fit: cover;
+        margin-right: 1rem;
+      }
+
+      .recommendation-info {
+        flex: 1;
+      }
+
+      .recommendation-name {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        color: #333;
+      }
+
+      .recommendation-desc {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 0.25rem;
+      }
+
+      .recommendation-price {
+        font-weight: 600;
+        color: #ff2442;
+      }
+
+      .recommendation-action {
+        margin-left: 1rem;
+      }
+
+      .order-button {
+        background-color: #ff2442;
+        color: white;
+        border: none;
+        border-radius: 9999px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .detail-actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #eee;
+        z-index: 50;
+      }
+
+      .action-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #666;
+      }
+
+      .action-button i {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .action-button span {
+        font-size: 0.75rem;
+      }
+
+      .action-button.active {
+        color: #ff2442;
+      }
+
+      .action-button.like.active {
+        color: #ff2442;
+      }
+
+      .action-button.icon-only {
+        margin: 0 0.5rem;
+      }
+
+      .action-button.icon-only i {
+        font-size: 1.75rem;
+        margin-bottom: 0;
+      }
+
+      .action-button.icon-only span {
+        display: none;
+      }
+
+      .bottom-comment-input {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        background-color: #f5f5f5;
+        border-radius: 9999px;
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
+      }
+
+      .bottom-comment-input input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        outline: none;
+      }
+
+      .bottom-comment-input button {
+        color: #ff2442;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .comments-section {
+        background-color: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 5rem;
+      }
+
+      .comments-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .comments-title i {
+        margin-right: 0.5rem;
+        color: #ff2442;
+      }
+
+      .comment-item {
+        display: flex;
+        margin-bottom: 1.5rem;
+      }
+
+      .comment-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      .comment-content {
+        flex: 1;
+      }
+
+      .comment-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .comment-author {
+        font-weight: 600;
+        margin-right: 0.5rem;
+        color: #333;
+      }
+
+      .comment-time {
+        font-size: 0.75rem;
+        color: #999;
+      }
+
+      .comment-text {
+        color: #333;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+      }
+
+      .comment-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .comment-action {
+        font-size: 0.75rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+      }
+
+      .comment-action i {
+        margin-right: 0.25rem;
+      }
+
+      .author-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .author-avatar {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      .author-details {
+        flex: 1;
+      }
+
+      .author-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      .author-date {
+        font-size: 0.85rem;
+        color: #999;
+      }
+
+      .follow-button {
+        background-color: #ff2442;
+        color: white;
+        border: none;
+        border-radius: 9999px;
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .gallery-image {
+        width: calc(33.333% - 0.5rem);
+        height: 100px;
+        border-radius: 0.5rem;
+        object-fit: cover;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tag {
+        background-color: #f5f5f5;
+        color: #666;
+        padding: 0.3rem 0.8rem;
+        border-radius: 9999px;
+        font-size: 0.85rem;
+      }
+
+      .category-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        align-items: center;
+      }
+
+      .category-tag {
+        display: flex;
+        align-items: center;
+        background-color: #f5f5f5;
+        color: #666;
+        padding: 0.3rem 0.8rem;
+        border-radius: 9999px;
+        font-size: 0.85rem;
+      }
+
+      .category-tag i {
+        margin-right: 0.3rem;
+        color: #ff2442;
+      }
+
+      /* 新增横向滑动图片样式 */
+      .image-slider {
+        position: relative;
+        height: 500px;
+        overflow: hidden;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        width: calc(100% + 2rem);
+      }
+
+      .slider-container {
+        display: flex;
+        transition: transform 0.3s ease;
+        height: 100%;
+      }
+
+      .slider-item {
+        flex: 0 0 100%;
+        height: 100%;
+      }
+
+      .slider-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .slider-dots {
+        position: absolute;
+        bottom: 1rem;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .slider-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+      }
+
+      .slider-dot.active {
+        background-color: white;
+      }
+
+      /* 顶部导航样式 */
+      .top-nav {
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 顶部导航 -->
+    <div class="top-nav">
+      <div
+        class="container mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <a href="index.html" class="text-gray-700">
+          <i class="ri-arrow-left-line text-xl"></i>
+        </a>
+        <div class="flex">
+          <button class="text-gray-700 mr-4">
+            <i class="ri-share-forward-line text-xl"></i>
+          </button>
+          <button class="text-gray-700">
+            <i class="ri-more-line text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4">
+      <!-- 详情页头部 - 横向滑动多图 -->
+      <div class="image-slider">
+        <div class="slider-container">
+          <div class="slider-item">
+            <img
+              src="https://picsum.photos/800/400?random=1"
+              alt="健康生活习惯"
+            />
+          </div>
+          <div class="slider-item">
+            <img src="https://picsum.photos/800/400?random=2" alt="健康饮食" />
+          </div>
+          <div class="slider-item">
+            <img src="https://picsum.photos/800/400?random=3" alt="运动习惯" />
+          </div>
+          <div class="slider-item">
+            <img src="https://picsum.photos/800/400?random=4" alt="睡眠习惯" />
+          </div>
+        </div>
+        <div class="slider-dots">
+          <div class="slider-dot active"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+        </div>
+      </div>
+
+      <!-- 详情内容 -->
+      <div class="detail-content">
+        <!-- 作者信息 -->
+        <div class="author-info">
+          <div class="author-avatar">
+            <i class="ri-user-line text-blue-500 text-xl"></i>
+          </div>
+          <div class="author-details">
+            <div class="author-name">健康生活达人</div>
+            <div class="author-date">2023-06-01</div>
+          </div>
+          <button class="follow-button">关注</button>
+        </div>
+
+        <!-- 分类和标签融合 -->
+        <div class="category-tags">
+          <div class="category-tag">
+            <i class="ri-heart-pulse-fill"></i>
+            健康生活
+          </div>
+          <span class="tag">#生活习惯</span>
+          <span class="tag">#生活方式</span>
+          <span class="tag">#健康指南</span>
+        </div>
+
+        <!-- 内容部分 -->
+        <div class="detail-section">
+          <p class="detail-text">
+            良好的生活习惯是健康的基础。每天保持规律作息，多喝水，保持室内通风，定期整理个人空间，这些都是简单但有效的生活习惯。
+          </p>
+          <p class="detail-text">
+            养成良好习惯需要时间和耐心，但一旦形成，将会对你的健康和生活质量产生深远的影响。
+          </p>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">
+            <i class="ri-check-double-line text-green-500"></i>
+            推荐习惯
+          </div>
+          <ul class="detail-list">
+            <li>每天保持规律作息，早睡早起</li>
+            <li>每天喝足够的水，保持身体水分</li>
+            <li>保持室内通风，定期开窗换气</li>
+            <li>定期整理个人空间，保持环境整洁</li>
+            <li>每天进行适度运动，保持身体活力</li>
+            <li>保持良好的个人卫生习惯</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">
+            <i class="ri-close-circle-line text-red-500"></i>
+            需要避免的习惯
+          </div>
+          <ul class="detail-list">
+            <li>熬夜，不规律的作息时间</li>
+            <li>久坐不动，缺乏运动</li>
+            <li>不注重个人卫生</li>
+            <li>室内空气不流通</li>
+            <li>过度依赖电子设备</li>
+          </ul>
+        </div>
+
+        <!-- 商品推荐部分 -->
+        <div class="detail-recommendations">
+          <div class="detail-recommendations-title">
+            <i class="ri-shopping-bag-line"></i>
+            相关推荐
+          </div>
+
+          <!-- 推荐商品1 -->
+          <div class="recommendation-item">
+            <img
+              src="https://picsum.photos/100/100?random=10"
+              alt="智能水杯"
+              class="recommendation-img"
+            />
+            <div class="recommendation-info">
+              <div class="recommendation-name">智能提醒水杯</div>
+              <div class="recommendation-desc">帮助你养成多喝水的好习惯</div>
+              <div class="recommendation-price">¥129</div>
+            </div>
+            <div class="recommendation-action">
+              <a href="#" class="order-button">去下单</a>
+            </div>
+          </div>
+
+          <!-- 推荐商品2 -->
+          <div class="recommendation-item">
+            <img
+              src="https://picsum.photos/100/100?random=11"
+              alt="空气净化器"
+              class="recommendation-img"
+            />
+            <div class="recommendation-info">
+              <div class="recommendation-name">便携式空气净化器</div>
+              <div class="recommendation-desc">改善室内空气质量</div>
+              <div class="recommendation-price">¥299</div>
+            </div>
+            <div class="recommendation-action">
+              <a href="#" class="order-button">去下单</a>
+            </div>
+          </div>
+
+          <!-- 推荐商品3 -->
+          <div class="recommendation-item">
+            <img
+              src="https://picsum.photos/100/100?random=12"
+              alt="整理收纳盒"
+              class="recommendation-img"
+            />
+            <div class="recommendation-info">
+              <div class="recommendation-name">多功能整理收纳盒</div>
+              <div class="recommendation-desc">帮助你保持空间整洁</div>
+              <div class="recommendation-price">¥59</div>
+            </div>
+            <div class="recommendation-action">
+              <a href="#" class="order-button">去下单</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 评论区 -->
+        <div class="comments-section">
+          <div class="comments-title">
+            <i class="ri-message-3-line"></i>
+            评论 (32)
+          </div>
+
+          <!-- 评论1 -->
+          <div class="comment-item">
+            <div class="comment-avatar">
+              <i class="ri-user-line text-blue-500"></i>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <div class="comment-author">用户A</div>
+                <div class="comment-time">1小时前</div>
+              </div>
+              <div class="comment-text">
+                这些建议非常实用，我已经开始执行了，感觉生活更有规律了！
+              </div>
+              <div class="comment-actions">
+                <div class="comment-action">
+                  <i class="ri-reply-line"></i>
+                  回复
+                </div>
+                <div class="comment-action">
+                  <i class="ri-heart-line"></i>
+                  点赞
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 评论2 -->
+          <div class="comment-item">
+            <div class="comment-avatar">
+              <i class="ri-user-line text-green-500"></i>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <div class="comment-author">用户B</div>
+                <div class="comment-time">2小时前</div>
+              </div>
+              <div class="comment-text">
+                智能提醒水杯确实很好用，推荐给大家！每天都能喝够八杯水了。
+              </div>
+              <div class="comment-actions">
+                <div class="comment-action">
+                  <i class="ri-reply-line"></i>
+                  回复
+                </div>
+                <div class="comment-action">
+                  <i class="ri-heart-line"></i>
+                  点赞
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 评论3 -->
+          <div class="comment-item">
+            <div class="comment-avatar">
+              <i class="ri-user-line text-purple-500"></i>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <div class="comment-author">用户C</div>
+                <div class="comment-time">3小时前</div>
+              </div>
+              <div class="comment-text">
+                整理收纳盒真的很实用，我的桌面现在整洁多了，心情也变好了！
+              </div>
+              <div class="comment-actions">
+                <div class="comment-action">
+                  <i class="ri-reply-line"></i>
+                  回复
+                </div>
+                <div class="comment-action">
+                  <i class="ri-heart-line"></i>
+                  点赞
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部操作栏 -->
+    <div class="detail-actions">
+      <div class="bottom-comment-input">
+        <input type="text" placeholder="写下你的评论..." />
+        <button>
+          <i class="ri-send-plane-fill text-xl"></i>
+        </button>
+      </div>
+      <div class="action-button like active icon-only">
+        <i class="ri-heart-fill"></i>
+        <span>喜欢</span>
+      </div>
+      <div class="action-button icon-only">
+        <i class="ri-calendar-check-line"></i>
+        <span>添加到计划</span>
+      </div>
+    </div>
+  </body>
+</html>

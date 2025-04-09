@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生活指南 - 个人页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+    />
+    <style>
+      .masonry-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 8px;
+      }
+
+      @media (max-width: 480px) {
+        .masonry-grid {
+          grid-gap: 6px;
+        }
+
+        .card-img {
+          height: 120px;
+        }
+
+        .card {
+          margin-bottom: 6px;
+        }
+
+        .p-4 {
+          padding: 0.75rem;
+        }
+
+        .text-lg {
+          font-size: 0.9rem;
+        }
+
+        .text-sm {
+          font-size: 0.75rem;
+        }
+      }
+
+      .card {
+        break-inside: avoid;
+        margin-bottom: 16px;
+        position: relative;
+      }
+
+      .card-img {
+        height: 180px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .card-content {
+        padding: 1rem;
+      }
+
+      .card-text {
+        color: #4b5563;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+      }
+
+      .category-icon {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-6 pb-20">
+      <!-- 用户信息 -->
+      <div class="bg-white rounded-xl shadow-md p-4 mb-6">
+        <div class="flex items-center">
+          <div
+            class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mr-4"
+          >
+            <i class="ri-user-line text-blue-500 text-3xl"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold">我的生活指南</h2>
+            <p class="text-gray-500">分享健康、快乐的生活方式</p>
+            <div class="flex mt-2">
+              <div class="mr-4">
+                <span class="font-semibold">12</span>
+                <span class="text-gray-500 text-sm">作品</span>
+              </div>
+              <div class="mr-4">
+                <span class="font-semibold">256</span>
+                <span class="text-gray-500 text-sm">关注</span>
+              </div>
+              <div>
+                <span class="font-semibold">128</span>
+                <span class="text-gray-500 text-sm">粉丝</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 flex justify-between">
+          <button
+            class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm w-full mr-2"
+          >
+            编辑资料
+          </button>
+          <button
+            class="bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm w-full"
+          >
+            分享
+          </button>
+        </div>
+      </div>
+
+      <!-- 作品列表 -->
+      <div class="mb-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">我的作品</h3>
+          <div class="flex">
+            <button class="text-blue-500 mr-3">
+              <i class="ri-grid-fill"></i>
+            </button>
+            <button class="text-gray-400">
+              <i class="ri-list-check"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="masonry-grid">
+          <!-- 作品1 -->
+          <a
+            href="detail.html"
+            class="card bg-rose-50 rounded-xl overflow-hidden shadow-md block"
+          >
+            <div class="category-icon">
+              <i class="ri-heart-pulse-fill text-rose-500 text-xl"></i>
+            </div>
+            <img
+              src="https://picsum.photos/500/300?random=1"
+              alt="健康生活"
+              class="card-img"
+            />
+            <div class="card-content">
+              <p class="card-text line-clamp-4">
+                良好的生活习惯是健康的基础。每天保持规律作息，多喝水，保持室内通风，定期整理个人空间，这些都是简单但有效的生活习惯。
+              </p>
+            </div>
+          </a>
+
+          <!-- 作品2 -->
+          <a
+            href="detail.html"
+            class="card bg-blue-50 rounded-xl overflow-hidden shadow-md block"
+          >
+            <div class="category-icon">
+              <i class="ri-restaurant-2-fill text-blue-500 text-xl"></i>
+            </div>
+            <img
+              src="https://picsum.photos/500/300?random=2"
+              alt="健康饮食"
+              class="card-img"
+            />
+            <div class="card-content">
+              <p class="card-text line-clamp-4">
+                均衡的饮食是健康的关键。每天摄入足够的蛋白质、维生素和矿物质，减少加工食品的摄入，多吃新鲜蔬果。
+              </p>
+            </div>
+          </a>
+
+          <!-- 作品3 -->
+          <a
+            href="detail.html"
+            class="card bg-green-50 rounded-xl overflow-hidden shadow-md block"
+          >
+            <div class="category-icon">
+              <i class="ri-run-fill text-green-500 text-xl"></i>
+            </div>
+            <img
+              src="https://picsum.photos/500/300?random=3"
+              alt="运动习惯"
+              class="card-img"
+            />
+            <div class="card-content">
+              <p class="card-text line-clamp-4">
+                规律运动能增强体质，提高免疫力。每周至少进行3-4次有氧运动，如快走、慢跑或游泳，每次持续30分钟以上。
+              </p>
+            </div>
+          </a>
+
+          <!-- 作品4 -->
+          <a
+            href="detail.html"
+            class="card bg-purple-50 rounded-xl overflow-hidden shadow-md block"
+          >
+            <div class="category-icon">
+              <i class="ri-moon-fill text-purple-500 text-xl"></i>
+            </div>
+            <img
+              src="https://picsum.photos/500/300?random=4"
+              alt="睡眠习惯"
+              class="card-img"
+            />
+            <div class="card-content">
+              <p class="card-text line-clamp-4">
+                良好的睡眠是身体恢复的关键。保持规律的睡眠时间，睡前避免使用电子设备，创造舒适的睡眠环境。
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div
+      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-2 z-50"
+    >
+      <a href="index.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-home-fill text-xl"></i>
+        <span class="text-xs mt-1">首页</span>
+      </a>
+      <a href="plan.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-calendar-check-fill text-xl"></i>
+        <span class="text-xs mt-1">计划</span>
+      </a>
+      <a href="create.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-add-circle-fill text-xl"></i>
+        <span class="text-xs mt-1">创建</span>
+      </a>
+      <a href="message.html" class="flex flex-col items-center text-gray-500">
+        <i class="ri-message-3-fill text-xl"></i>
+        <span class="text-xs mt-1">消息</span>
+      </a>
+      <a href="profile.html" class="flex flex-col items-center text-blue-500">
+        <i class="ri-user-fill text-xl"></i>
+        <span class="text-xs mt-1">我的</span>
+      </a>
+    </div>
+  </body>
+</html>
