@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生活指南 - 计划详情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+    />
+    <style>
+      body {
+        background-color: #f8f8f8;
+      }
+
+      /* 顶部导航样式 */
+      .top-nav {
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        margin-bottom: 0; /* 移除底部边距 */
+      }
+
+      /* 计划详情样式 */
+      .plan-detail {
+        padding: 1rem 0;
+      }
+
+      .plan-header {
+        background-color: white;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      /* 状态标签页样式 */
+      .status-tabs {
+        display: flex;
+        background-color: white;
+        border-bottom: 1px solid #eee;
+        position: sticky;
+        top: 3.5rem;
+        z-index: 99;
+        margin-top: 0; /* 移除顶部边距 */
+      }
+
+      .status-tab {
+        flex: 1;
+        text-align: center;
+        padding: 0.75rem 0;
+        color: #999;
+        font-size: 0.9rem;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .status-tab.active {
+        color: #ff2442;
+      }
+
+      .status-tab.active:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 2px;
+        background-color: #ff2442;
+      }
+
+      .status-tab i {
+        margin-right: 0.25rem;
+      }
+
+      .plan-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+      }
+
+      .plan-icon.health {
+        background-color: #ffebee;
+        color: #ff2442;
+      }
+
+      .plan-title {
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .plan-desc {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .plan-meta {
+        display: flex;
+        align-items: center;
+        font-size: 0.85rem;
+        color: #999;
+        margin-bottom: 0.5rem;
+      }
+
+      .plan-date {
+        margin-right: 1rem;
+      }
+
+      .plan-status {
+        display: flex;
+        align-items: center;
+      }
+
+      .plan-status i {
+        margin-right: 0.25rem;
+      }
+
+      .plan-status.active {
+        color: #4caf50;
+      }
+
+      .plan-status.completed {
+        color: #2196f3;
+      }
+
+      .plan-status.pending {
+        color: #ff9800;
+      }
+
+      .plan-progress {
+        margin-top: 1rem;
+      }
+
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .progress-bar {
+        height: 0.5rem;
+        background-color: #f0f0f0;
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background-color: #4caf50;
+        border-radius: 9999px;
+      }
+
+      .plan-content {
+        background-color: white;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      .content-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .content-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .section-title i {
+        margin-right: 0.5rem;
+      }
+
+      .section-text {
+        color: #333;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+
+      .section-list {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 1rem;
+      }
+
+      .section-list li {
+        margin-bottom: 0.5rem;
+        color: #333;
+        position: relative;
+        padding-left: 1.25rem;
+        line-height: 1.5;
+        font-size: 0.95rem;
+      }
+
+      .section-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #ff2442;
+        font-size: 1.2rem;
+      }
+
+      .plan-actions {
+        background-color: white;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .action-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #666;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .action-button i {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .action-button span {
+        font-size: 0.75rem;
+      }
+
+      .action-button.active {
+        color: #ff2442;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 顶部导航 -->
+    <div class="top-nav">
+      <div
+        class="container mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <a href="plan.html" class="text-gray-700">
+          <i class="ri-arrow-left-line text-xl"></i>
+        </a>
+        <h1 class="text-xl font-bold">计划详情</h1>
+        <div class="flex">
+          <button class="text-gray-700">
+            <i class="ri-more-line text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 状态标签页 -->
+    <div class="status-tabs">
+      <div class="status-tab active">
+        <i class="ri-checkbox-circle-line"></i>
+        进行中
+      </div>
+      <div class="status-tab">
+        <i class="ri-checkbox-circle-fill"></i>
+        已完成
+      </div>
+      <div class="status-tab">
+        <i class="ri-close-circle-line"></i>
+        已放弃
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 pb-20">
+      <!-- 计划详情 -->
+      <div class="plan-detail">
+        <!-- 计划头部 -->
+        <div class="plan-header">
+          <div class="plan-icon health">
+            <i class="ri-heart-pulse-fill text-2xl"></i>
+          </div>
+          <div class="plan-title">健康生活习惯养成计划</div>
+          <div class="plan-desc">
+            培养健康的生活习惯，提高生活质量，让生活更加规律和健康。
+          </div>
+          <div class="plan-meta">
+            <div class="plan-date">开始于 2023-06-01</div>
+          </div>
+          <div class="plan-progress">
+            <div class="progress-label">
+              <span>进度</span>
+              <span>65%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 计划内容 -->
+        <div class="plan-content">
+          <!-- 内容部分 -->
+          <div class="content-section">
+            <div class="section-title">
+              <i class="ri-information-line text-blue-500"></i>
+              计划概述
+            </div>
+            <p class="section-text">
+              良好的生活习惯是健康的基础。每天保持规律作息，多喝水，保持室内通风，定期整理个人空间，这些都是简单但有效的生活习惯。
+            </p>
+            <p class="section-text">
+              养成良好习惯需要时间和耐心，但一旦形成，将会对你的健康和生活质量产生深远的影响。
+            </p>
+          </div>
+
+          <div class="content-section">
+            <div class="section-title">
+              <i class="ri-check-double-line text-green-500"></i>
+              推荐习惯
+            </div>
+            <ul class="section-list">
+              <li>每天保持规律作息，早睡早起</li>
+              <li>每天喝足够的水，保持身体水分</li>
+              <li>保持室内通风，定期开窗换气</li>
+              <li>每天整理个人空间10分钟</li>
+              <li>每天进行30分钟适度运动</li>
+              <li>保持良好的个人卫生习惯</li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <div class="section-title">
+              <i class="ri-close-circle-line text-red-500"></i>
+              需要避免的习惯
+            </div>
+            <ul class="section-list">
+              <li>熬夜，不规律的作息时间</li>
+              <li>久坐不动，缺乏运动</li>
+              <li>不注重个人卫生</li>
+              <li>室内空气不流通</li>
+              <li>过度依赖电子设备</li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <div class="section-title">
+              <i class="ri-calendar-check-line text-purple-500"></i>
+              执行计划
+            </div>
+            <p class="section-text">本计划为期30天，每天需要完成的任务包括：</p>
+            <ul class="section-list">
+              <li>早上7点起床，晚上11点前睡觉</li>
+              <li>每天喝8杯水，约2000ml</li>
+              <li>每天开窗通风3次，每次15分钟</li>
+              <li>每天整理个人空间10分钟</li>
+              <li>每天进行30分钟适度运动</li>
+              <li>保持良好的个人卫生习惯</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 计划操作 -->
+        <div class="plan-actions">
+          <button class="action-button">
+            <i class="ri-edit-line"></i>
+            <span>编辑</span>
+          </button>
+          <button class="action-button">
+            <i class="ri-delete-bin-line"></i>
+            <span>删除</span>
+          </button>
+          <button class="action-button">
+            <i class="ri-share-forward-line"></i>
+            <span>分享</span>
+          </button>
+          <button class="action-button active">
+            <i class="ri-checkbox-circle-line"></i>
+            <span>完成</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 移除底部导航 -->
+  </body>
+</html>
