@@ -22,7 +22,7 @@
         position: sticky;
         top: 0;
         z-index: 100;
-        margin-bottom: 0; /* 移除底部边距 */
+        margin-bottom: 0;
       }
 
       /* 计划详情样式 */
@@ -36,45 +36,6 @@
         padding: 1.5rem;
         margin-bottom: 1rem;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      }
-
-      /* 状态标签页样式 */
-      .status-tabs {
-        display: flex;
-        background-color: white;
-        border-bottom: 1px solid #eee;
-        position: sticky;
-        top: 3.5rem;
-        z-index: 99;
-        margin-top: 0; /* 移除顶部边距 */
-      }
-
-      .status-tab {
-        flex: 1;
-        text-align: center;
-        padding: 0.75rem 0;
-        color: #999;
-        font-size: 0.9rem;
-        position: relative;
-        cursor: pointer;
-      }
-
-      .status-tab.active {
-        color: #ff2442;
-      }
-
-      .status-tab.active:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 25%;
-        width: 50%;
-        height: 2px;
-        background-color: #ff2442;
-      }
-
-      .status-tab i {
-        margin-right: 0.25rem;
       }
 
       .plan-icon {
@@ -276,22 +237,6 @@
       </div>
     </div>
 
-    <!-- 状态标签页 -->
-    <div class="status-tabs">
-      <div class="status-tab active">
-        <i class="ri-checkbox-circle-line"></i>
-        进行中
-      </div>
-      <div class="status-tab">
-        <i class="ri-checkbox-circle-fill"></i>
-        已完成
-      </div>
-      <div class="status-tab">
-        <i class="ri-close-circle-line"></i>
-        已放弃
-      </div>
-    </div>
-
     <div class="container mx-auto px-4 pb-20">
       <!-- 计划详情 -->
       <div class="plan-detail">
@@ -401,7 +346,5 @@
         </div>
       </div>
     </div>
-
-    <!-- 移除底部导航 -->
   </body>
 </html>
